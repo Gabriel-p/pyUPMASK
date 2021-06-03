@@ -39,6 +39,10 @@ def main(
         full_data, cl_ID, cl_xy, cl_data, cl_errs, data_rjct = dread(
             file_path, ID_c, x_c, y_c, data_cols, data_errs)
 
+        if len(full_data) > 100000:
+            print("File is too large. Skipping")
+            continue
+
         # Remove outliers
         msk_data, ID, xy, data, data_err = dmask(
             cl_ID, cl_xy, cl_data, cl_errs, oultr_method, stdRegion_nstd)
